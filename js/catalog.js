@@ -3,13 +3,15 @@
 'use strict';
 
 // Set up an empty cart for use on this page.
-const cart = new Cart([]);
-
+let cart = new Cart([]);
+const selectElement = document.getElementById('items');
+const quan = document.getElementById('quantity');
+const cartNav = document.getElementById('itemCount');
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
-  const selectElement = document.getElementById('items');
+  // const selectElement = document.getElementById('items');
   
   for (let i in Product.allProducts) {
     let opE = document.createElement('option');
@@ -27,7 +29,7 @@ function handleSubmit(event) {
   event.preventDefault();
 
   // Do all the things ...
-  addSelectedItemToCart(event);
+  addSelectedItemToCart();
   cart.saveToLocalStorage();
   updateCounter();
   updateCartPreview();
@@ -35,20 +37,21 @@ function handleSubmit(event) {
 }
 
 // TODO: Add the selected item and quantity to the cart
-function addSelectedItemToCart(e) {
+function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
-  let product = e.target.name.value;
+  let product = selectElement.value;
   // TODO: get the quantity
-  let quantity = e.target.name.value;
+  let quantity = quan.value;
   // TODO: using those, add one item to the Cart
-  // new Cart(product, quantity);
-  // cart = [product, quantity];
+  cart.addItem(product, quantity);
+  // cart.push(quantity);
   
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
-
+function updateCounter() {
+  
+}
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
