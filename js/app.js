@@ -5,14 +5,12 @@ const Cart = function(items) {
   // this.items is an array of CartItem instances.
   this.items = items;
 };
-let count = [];
 Cart.prototype.addItem = function(product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
   let count = 0;
   let newItem = new CartItem(product, quantity);
   this.items.push(newItem);
-  count++;
-  count.push(count)
+
 };
 
 Cart.prototype.saveToLocalStorage = function() {
