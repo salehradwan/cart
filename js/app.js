@@ -26,8 +26,9 @@ Cart.prototype.removeItem = function(item) {
 const CartItem = function(product, quantity) {
   this.product = product;
   this.quantity = quantity;
+  CartItem.allCartItem.push(this);
 };
-
+CartItem.allCartItem = [];
 // Product contructor.
 const Product = function(filePath, name) {
   this.filePath = filePath;

@@ -3,6 +3,7 @@
 
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 const table = document.getElementById('cart');
+
 table.addEventListener('click', removeItemFromCart);
 let cart;
 
@@ -10,7 +11,7 @@ function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   cart = new Cart(cartItems);
 }
-
+console.log(cart);
 // Make magic happen --- re-pull the Cart, clear out the screen and re-draw it
 function renderCart() {
   loadCart();
@@ -20,11 +21,28 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  
+  localStorage.clear();
 }
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
+  console.log(cart);
+
+  for (let i = 0; i < cart.items.length; i++) {
+    let trData = document.createElement('tr');
+    table.appendChild(trData);
+    let tdE = document.createElement('td')
+    trData.appendChild(tdE);
+    tdE.textContent = ` x `;
+    let data2 = document.createElement('td');
+    trData.appendChild(data2);
+    data2.textContent = cart.items[i].product;
+
+    let data3 = document.createElement('td');
+    trData.appendChild(data3);
+    data3.textContent = cart.items[i].quantity;
+  }
+}
 
   // TODO: Find the table body
 
@@ -33,7 +51,7 @@ function showCart() {
   // TODO: Create a TD for the delete link, quantity,  and the item
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
 
-}
+
 
 function removeItemFromCart(event) {
 
